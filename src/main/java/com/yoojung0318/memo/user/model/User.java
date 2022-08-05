@@ -1,11 +1,35 @@
 package com.yoojung0318.memo.user.model;
 
+import java.util.Date;
+
 public class User {
 
+	private int id;
 	private String loginId;
 	private String password;
 	private String name;
 	private String email;
+	private Date createdAt; //date:util.java
+	private Date updatedAt;
+	
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getLoginId() {
 		return loginId;
 	}

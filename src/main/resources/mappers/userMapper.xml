@@ -6,8 +6,9 @@
  	<insert id="insertUser" parameterType="map">
  		
  		INSERT INTO
-			`user`
+			`memo_user`
 		(
+			
 			`loginId`
 			, `password`
 			, `name`
@@ -29,5 +30,24 @@
 		
 	
 	</insert>
+	
+	<select id="selectUser" parameterType="map"
+	resultType="com.yoojung0318.memo.user.model.User">
+		SELECT 
+			`id`
+			, `loginId`
+			, `password`
+			, `name`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`memo_user`
+		WHERE
+			`loginId` = #{loginId}
+			AND `password` = #{password}
+	
+	
+	</select>
  
  </mapper>
