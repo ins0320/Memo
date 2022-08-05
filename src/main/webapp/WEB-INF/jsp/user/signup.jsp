@@ -15,85 +15,89 @@
 <link rel="stylesheet" href="/static/css/style.css" type="text/css">
 </head>
 <body>
- <div id="wrap">
- 	<c:import url="/WEB-INF/jsp/include/header.jsp"/>
- 	
- 	<section class= "d-flex d-flex justify-content-center">
- 	<article>
- 		<h1 class="text-center mt-5">회원가입</h1>
- 		<input type="text" class="form-control mt-3" id="idInput" placeholder="아이디">
- 		<input type="password" class="form-control mt-3" id="passwordInput" placeholder="비밀번호">
- 		<input type="password" class="form-control mt-3" id="passwordConfirmInput"placeholder="비밀번호">
- 		<input type="text" class="form-control mt-3" id="name" placeholder="이름">
- 		<input type="text" class="form-control mt-3" id="email" placeholder="이메일">
- 		<button class="btn btn-block btn-info mt-3" id="joinBtn">회원가입</button>
- 	</article>	
- 	</section>
- 	
- 	<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
- 
- </div>
-
-<script>
-	$(document).ready(function(){
-		$("#joinBtn").on("click", function(){
-			
-			
-			let id = $("#idInput").val();
-			let passwordInput = $("#passwordInput").val();
-			let passwordConfirmInput = $("#passwordConfirmInput").val();
-			let name = $("#name").val();
-			let email = $("#email").val();
-			
-			if(id == ""){
-				alert("id를 입력하세요!!");
-				return;
-			}
-			
-			if(passwordInput == ""){
-				alert("비밀번호를 입력하세요!!");
-				return;
-			}
-			
-			if(passwordConfirmInput != passwordInput){
-				alert("비밀번호가 일치하지 않습니다");
-				return;
-			}
-			
-			if(name == ""){
-				alert("이름을 입력하세요!!");
-				return;
-			}
-			
-			if(email == ""){
-				alert("이메일을 입력하세요!!");
-				return;
-			}
-			
-			//입력된 데이터를 회원 가입 api로 가입을 진행한다.
-			$.ajax({
-				type:"POST",
-				url:"/user/signup",
-				data:{"loginId":id, "password":passwordInput, "name":name, "email":email},
-				success:function(data){
-					if(data.result == "success"){
-						location.href = "/user/signin/view";
-					} else{
-						alert("회원가입 실패");
-					}
-				},
-				error:function(){
-					alert("회원가입 에러!!");
+<div id="wrap">
+		<c:import url="/WEB-INF/jsp/include/header.jsp" />
+		<section class="content d-flex justify-content-center">
+			<div class="col-4 py-5">
+				<h1 class="text-center">회원가입</h1>
+				<input type="text" class="form-control mt-3" id="idInput" placeholder="아이디">
+				<input type="password" class="form-control mt-3" id="passwordInput" placeholder="비밀번호">
+				<input type="password" class="form-control mt-3" id="passwordConfirmInput" placeholder="비밀번호 확인">
+				<input type="text" class="form-control mt-3" id="nameInput" placeholder="이름">
+				<input type="text" class="form-control mt-3" id="emailInput" placeholder="이메일">
+				
+				<button type="button" id="joinBtn" class="btn btn-info btn-block mt-3">회원가입</button>
+			</div>
+		
+		</section>
+		
+		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
+	
+	</div>
+	
+	<script>
+		$(document).ready(function() {
+			$("#joinBtn").on("click", function() {
+				let id = $("#idInput").val();
+				let password = $("#passwordInput").val();
+				let passwordConfirm = $("#passwordConfirmInput").val();
+				let name = $("#nameInput").val();
+				let email = $("#emailInput").val();
+				
+				if(id == "") {
+					alert("아이디를 입력하세요!!");
+					return;
 				}
+				
+				if(password == "") {
+					alert("비밀번호를 입력하세요");
+					return;
+				}
+				
+				if(password != passwordConfirm) {
+					alert("비밀번호가 일치하지 않습니다");
+					return;
+				}
+				
+				if(name == "") {
+					alert("이름을 입력하세요");
+					return;
+				}
+				
+				if(email == "") {
+					alert("이메일을 입력하세요");
+					return;
+				}
+				
+				// 입력된 데이터를 회원 가입 api 로 가입을 진행한다. 
+				$.ajax({
+					type:"post",
+					url:"/user/signup",
+					data:{"loginId":id, "password":password, "name":name, "email":email},
+					success:function(data) {
+						if(data.result == "success") {
+							location.href = "/user/signin/view";
+						} else {
+							alert("회원가입 실패");
+						}
+						
+					},
+					error:function() {
+						
+						alert("회원가입 에러!!");
+					}
+					
+				});
+				
+				
 				
 			});
 			
 			
-			
-		})
-		
-	})
-
-</script>
+		});
+	
+	
+	</script>
+	
 </body>
 </html>

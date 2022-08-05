@@ -8,11 +8,10 @@ public class UserController {
 
 	//jsp 화면 구성 
 	@GetMapping("/user/signup/view")
-	public String signupView() {
-		return "user/signup";
+	public String singupView() {
+		return "user/signup";			
 	}
-
-
+	
 	@GetMapping("/user/signin/view")
 	public String signinView() {
 		return "user/signin";
