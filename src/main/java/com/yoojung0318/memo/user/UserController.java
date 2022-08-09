@@ -19,6 +19,7 @@ public class UserController {
 	public String signinView() {
 		return "user/signin";
 	}
+	
 	@GetMapping("/user/signout")
 	public String signOut(HttpServletRequest request) {
 		
