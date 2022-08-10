@@ -1,9 +1,12 @@
 package com.yoojung0318.memo.post.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yoojung0318.memo.post.dao.PostDAO;
+import com.yoojung0318.memo.post.model.Post;
 
 @Service
 public class PostBO {
@@ -14,5 +17,15 @@ public class PostBO {
 	public int addPost(int userId, String title, String content) {
 		
 	return 	postDAO.insertPost(userId, title, content);
+	}
+	
+	//userId가 일치하는 메모 리스트 조회
+	public List<Post> getPostList(int userId){
+		return postDAO.selectPostList(userId);
+	}
+	// id 일치하는 메모 조회  
+	// id 값 하나만 전달되니까 type: post
+	public Post getPost(int id){
+		return postDAO.selectPost(id);
 	}
 }

@@ -39,10 +39,11 @@
 	<script>
 	$(document).ready(function() {
 		
-		$("#loginBtn").on("submit", function(e) {
-			
+		$("#LoinForm").on("submit", function(e) {
 			
 			//해당하는 이벤트에 포함된 모든 기능을 중단한다!!
+			e.preventDefault();
+			
 			
 			let loginId = $("#idInput").val();
 			let password = $("#passwordInput").val();
@@ -64,7 +65,7 @@
 				data:{"loginId":loginId, "password":password},
 				success:function(data) {
 					if(data.result == "success") {
-						location.href = "/post/list/view";
+						location.href ="/post/list/view";
 					} else {
 						alert("아이디/비밀번호를 확인해주세요!!");
 					}

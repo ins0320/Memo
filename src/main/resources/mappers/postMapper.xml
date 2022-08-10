@@ -5,24 +5,61 @@
  
  <mapper namespace="com.yoojung0318.memo.post.dao.PostDAO">
  
- <insert id="insertPost" parameterType="map">
- 
- 	INSERT INTO
- 			`memo_post`
- 	(
- 		`userId`
- 		,`subject`
- 		, `content`
- 		, createdAt`
- 		, updatedAt`
- 	)		
- 	VALUE
- 	(
- 		#{userId}
- 		,#{title}
- 		, #{content}
- 		, now()
- 		, now()
- 	)
- </insert>
+	 <insert id="insertPost" parameterType="map">
+	 
+	 	INSERT INTO
+	 			`memo_post`
+	 	(
+	 		`userId`
+	 		,`subject`
+	 		,`content`
+	 		,`createdAt`
+	 		,`updatedAt`
+	 	)		
+	 	VALUE
+	 	(
+	 		#{userId}
+	 		,#{title}
+	 		, #{content}
+	 		, now()
+	 		, now()
+	 	)
+	 </insert>
+	 
+	 <select id="selectPostList" parameterType="int"
+	 resultType="com.yoojung0318.memo.post.model.Post">
+	 	
+	 	SELECT
+	 		`id`
+	 		,`userId`
+	 		,`subject`
+	 		, `content`
+	 		, createdAt`
+	 		, updatedAt`
+	 	FROM
+	 		`memo_post`
+	 	WHERE
+	 		`userId` = #{userId}	
+	 	ORDER BY
+	 		`id` DESC	
+	 
+	 </select>
+	 
+	 
+	 <select id="selectPost" parameterType="int"
+	 resultType="com.yoojung0318.memo.post.model.Post">
+	 
+	 	SELECT
+	 		`id`
+	 		,`userId`
+	 		,`subject`
+	 		, `content`
+	 		, createdAt`
+	 		, updatedAt`
+	 	FROM
+	 		`memo_post`
+	 	WHERE
+	 		`id` = 	#{id}
+	 		
+	 </select>
  </mapper>

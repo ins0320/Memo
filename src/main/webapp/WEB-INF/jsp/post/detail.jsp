@@ -25,58 +25,22 @@
 				<h1 class="text-center">메모 입력</h1>
 				<div class="d-flex justify-content-between mt-2">
 					<label>제목: </label>
-					<input type="text" class="form-control col-11" id="titleInput">
+					<input type="text" class="form-control col-11" id="titleInput" value="${memo.subject }">
 			</div>
-			<textarea rows="5" class="form-control mt-2" id="contentInput"></textarea>
-			<input type="file" class="mt-2">
+			<textarea rows="5" class="form-control mt-2" id="contentInput">${memo.content }</textarea>
+			
 			<div class=" d-flex justify-content-between mt-3">
-				<a href="/post/list/view" class="btn btn-info">목록으로</a>
-				<button type="button" class="btn btn-info" id="saveBtn">저장</button>
+				<div>
+					<a href="/post/list/view" class="btn btn-info">목록으로</a>
+					<button type="button" class="btn btn-danger">삭제</button>
+				</div>
+				<button type="button" class="btn btn-info" id="saveBtn">수정</button>
+				
 			</div>
 	
 		</div>
 		
 		</section>
-		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
-	</div>
-	
-	<script>
-	$(document).ready(function(){
-		$("#saveBtn").on("click",function(){
-			let title = $("#titleInput").val();
-			let content = $("#contentInput").val().trim(); //trim: 공백제거
-			
-			if(title == ""){
-				alert("제목을 입력하세요");
-				return;
-			} 
-			if(content == ""){
-				alert("내용을 입력하세요");
-				return;
-			} 
-			
-			//메모 api 호출
-			$.ajax({
-				type:"post",
-				url:"/post/create",
-				data:{"title" : title , "content" : content},
-				success:function(data){
-					if(data.result == "success"){
-						location.href ="/post/list/view";
-					} else{
-						alert("메모작성 실패")
-					}
-				},
-				error:function(){
-					
-					alert("메모작성 에러");
-				}
-			});
-		});
-		
-	});
-	
-	</script>
-</body>
+		</div>
 </html>

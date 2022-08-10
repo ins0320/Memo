@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<ttitle>메모리스트</title>
+<title>메모리스트</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -19,8 +20,34 @@
 
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
-		<section>
+		<section class="d-flex justify-content-center">
 		
+		<div class="col-8 my-5">
+			<h1 class="text-center ">메모 리스트</h1>
+			<table class="table text-center mt-5">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>제목</th>
+						<th>시간</th>
+					</tr>
+				</thead>
+				<tbody>
+				<c:forEach var="memo" items="${memoList }">				
+					<tr>
+						<td>${memo.id }</td>
+						<td><a href="/post/detail/view?id=${memo.id }">${memo.subject }</a></td>
+						
+						<td><fmt:formatDate value="${memo.createdAt }" pattern="yyyy=MM=dd HH:mm:ss"/></td>
+					</tr>
+				</c:forEach>	
+				
+				</tbody>		
+			</table>
+			<div class="text-right">
+				<a href="/post/create/view" class="btn btn-info">글쓰기</a>
+			</div>
+		</div>
 		</section>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
