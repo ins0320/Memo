@@ -13,14 +13,16 @@
 	 		`userId`
 	 		,`subject`
 	 		,`content`
+	 		,`imagePath`
 	 		,`createdAt`
 	 		,`updatedAt`
 	 	)		
 	 	VALUE
 	 	(
-	 		#{userId}
+	 		#{userId}  <!-- dao의 @param에서 정의한 변수이름을 사용 -->
 	 		,#{title}
 	 		, #{content}
+	 		, #{imagePath}
 	 		, now()
 	 		, now()
 	 	)
@@ -54,6 +56,7 @@
 	 		,`userId`
 	 		,`subject`
 	 		, `content`
+	 		, `imagePath`
 	 		, createdAt`
 	 		, updatedAt`
 	 	FROM
