@@ -23,7 +23,7 @@ public class PostRestController {
 	//메모 입력 api
 	@PostMapping("/post/create")
 	public Map<String, String> memoCreate(
-			@RequestParam("title")String title
+			@RequestParam("title") String title
 			,@RequestParam("content")String content
 			,@RequestParam(value="file", required=false) MultipartFile  file// file의 타입, 필수 요소 아님을 나타냄(value="", required=false)
 			,HttpServletRequest request){ // session 얻어오기 위해 request 씀
@@ -32,7 +32,7 @@ public class PostRestController {
 		
 		int userId = (Integer)session.getAttribute("userId"); //다운캐스팅( object로 저장되어있기에, int로 바꿔줘야함)
 	
-		int count = postBO.addPost(userId, title, content, file);//BO 메소드에서 전달받은 변수값 그대로
+		int count = postBO.addPost(userId,title, content, file);//BO 메소드에서 전달받은 변수값 그대로
 		
 		Map<String, String> result = new HashMap<>();
 		if(count == 1) {
